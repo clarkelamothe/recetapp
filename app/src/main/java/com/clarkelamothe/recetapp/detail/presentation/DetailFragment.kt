@@ -14,6 +14,10 @@ class DetailFragment : BaseFragment<FragmentDetailBinding>(
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         binding?.bindRecipe()
+
+        binding?.fabLocation?.setOnClickListener {
+            navigateTo(DetailFragmentDirections.actionDetailFragmentToLocationFragment(args.recipeDetail?.location))
+        }
     }
 
     private fun FragmentDetailBinding.bindRecipe() {

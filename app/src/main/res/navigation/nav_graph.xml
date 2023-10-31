@@ -33,5 +33,11 @@
         android:id="@+id/locationFragment"
         android:name="com.clarkelamothe.recetapp.location.presentation.LocationFragment"
         android:label="fragment_location"
-        tools:layout="@layout/fragment_location" />
+        tools:layout="@layout/fragment_location">
+        <argument
+            android:name="location"
+            android:defaultValue="@null"
+            app:argType="string"
+            app:nullable="true" />
+    </fragment>
 </navigation>
