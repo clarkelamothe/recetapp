@@ -21,6 +21,10 @@ class RecipeViewModel(
             }
         }
     }
+
+    fun onRecipeClicked(it: Recipe) {
+        sendEvent(RecipeUiEvent.OnItemClicked(it.id))
+    }
 }
 
 sealed class RecipeUiEvent {
