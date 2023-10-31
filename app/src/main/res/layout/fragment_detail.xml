@@ -28,7 +28,7 @@
 
     <TextView
         android:id="@+id/tv_recipe_name"
-        style="@style/TextAppearance.MaterialComponents.Body1"
+        style="@style/TextAppearance.MaterialComponents.Headline5"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="50dp"
@@ -68,11 +68,11 @@
         android:layout_marginEnd="50dp"
         android:ellipsize="end"
         android:maxLines="4"
+        android:text="@string/ingredients"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_recipe_description"
-        tools:text="Ingredients" />
+        app:layout_constraintTop_toBottomOf="@id/tv_recipe_description" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="0dp"

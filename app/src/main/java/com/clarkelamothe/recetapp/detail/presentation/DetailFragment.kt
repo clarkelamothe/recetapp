@@ -2,8 +2,8 @@ package com.clarkelamothe.recetapp.detail.presentation
 
 import android.os.Bundle
 import android.view.View
-import android.widget.Toast
 import androidx.navigation.fragment.navArgs
+import com.bumptech.glide.Glide
 import com.clarkelamothe.recetapp.core.ui.BaseFragment
 import com.clarkelamothe.recetapp.databinding.FragmentDetailBinding
 
@@ -13,7 +13,19 @@ class DetailFragment : BaseFragment<FragmentDetailBinding>(
     private val args: DetailFragmentArgs by navArgs()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        Toast.makeText(context, "${args.recipeDetail}", Toast.LENGTH_SHORT).show()
+        binding?.bindRecipe()
+    }
 
+    private fun FragmentDetailBinding.bindRecipe() {
+        with(this) {
+            args.recipeDetail?.let {
+                Glide.with(ivRecipeDetail)
+                    .load(it.imageUrl)
+                    .into(ivRecipeDetail)
+
+                tvRecipeName.text = it.name
+                tvRecipeDescription.text = it.description
+            }
+        }
     }
 }
