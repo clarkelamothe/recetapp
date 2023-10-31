@@ -6,7 +6,6 @@ import android.widget.SearchView.OnQueryTextListener
 import androidx.appcompat.widget.SearchView
 import androidx.core.view.isVisible
 import androidx.lifecycle.lifecycleScope
-import com.clarkelamothe.recetapp.R
 import com.clarkelamothe.recetapp.core.ui.BaseFragment
 import com.clarkelamothe.recetapp.core.ui.MarginItemDecorator
 import com.clarkelamothe.recetapp.databinding.FragmentRecipeBinding
@@ -38,7 +37,12 @@ class RecipeFragment : BaseFragment<FragmentRecipeBinding>(
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel.eventFlow.collect {
                 when (it) {
-                    is RecipeUiEvent.OnItemClicked -> navigateTo(R.id.action_recipeFragment_to_detailFragment)
+                    is RecipeUiEvent.OnItemClicked -> {
+                        navigateTo(
+                            RecipeFragmentDirections.actionRecipeFragmentToDetailFragment(it.recipe)
+                        )
+                    }
+
                     is RecipeUiEvent.OnSearchQuery -> setAdapter(it.searchResult)
                 }
             }
