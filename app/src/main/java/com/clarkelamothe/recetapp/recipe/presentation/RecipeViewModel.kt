@@ -22,13 +22,22 @@ class RecipeViewModel(
         }
     }
 
-    fun onRecipeClicked(it: Recipe) {
-        sendEvent(RecipeUiEvent.OnItemClicked(it.id))
+    fun onRecipeClicked(recipe: Recipe) = sendEvent(RecipeUiEvent.OnItemClicked(recipe))
+
+    fun search(query: String?) {
+        val list = _uiState.value
+        val result = (list as RecipeUiState.Success).items.filter {
+            it.name.lowercase().contains(query?.lowercase() ?: "")
+        }
+        sendEvent(
+            RecipeUiEvent.OnSearchQuery(result)
+        )
     }
 }
 
 sealed class RecipeUiEvent {
-    data class OnItemClicked(val id: Int) : RecipeUiEvent()
+    data class OnItemClicked(val recipe: Recipe) : RecipeUiEvent()
+    data class OnSearchQuery(val searchResult: List<Recipe>) : RecipeUiEvent()
 }
 
 sealed class RecipeUiState {

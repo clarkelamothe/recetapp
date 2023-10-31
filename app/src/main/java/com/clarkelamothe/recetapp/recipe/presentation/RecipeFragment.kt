@@ -2,6 +2,8 @@ package com.clarkelamothe.recetapp.recipe.presentation
 
 import android.os.Bundle
 import android.view.View
+import android.widget.SearchView.OnQueryTextListener
+import androidx.appcompat.widget.SearchView
 import androidx.core.view.isVisible
 import androidx.lifecycle.lifecycleScope
 import com.clarkelamothe.recetapp.R
@@ -17,11 +19,9 @@ class RecipeFragment : BaseFragment<FragmentRecipeBinding>(
 ) {
     private val viewModel: RecipeViewModel by viewModel()
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        binding?.searchListeners()
+        binding?.rvRecipes?.addItemDecoration(MarginItemDecorator())
         collectState()
         collectEvent()
     }
@@ -39,6 +39,7 @@ class RecipeFragment : BaseFragment<FragmentRecipeBinding>(
             viewModel.eventFlow.collect {
                 when (it) {
                     is RecipeUiEvent.OnItemClicked -> navigateTo(R.id.action_recipeFragment_to_detailFragment)
+                    is RecipeUiEvent.OnSearchQuery -> setAdapter(it.searchResult)
                 }
             }
         }
@@ -49,12 +50,13 @@ class RecipeFragment : BaseFragment<FragmentRecipeBinding>(
             it.rvRecipes.adapter = RecipeAdapter(items) {
                 viewModel.onRecipeClicked(it)
             }
-            it.rvRecipes.addItemDecoration(MarginItemDecorator())
         }
     }
 
     private fun FragmentRecipeBinding.bindState(state: RecipeUiState) {
         with(this) {
+            svSearchRecipe.isEnabled =
+                !(state is RecipeUiState.Loading || state is RecipeUiState.Error)
             incLoading.pbLoading.isVisible = state is RecipeUiState.Loading
             incError.tvErrorMsg.isVisible = state is RecipeUiState.Error
             incError.ibError.isVisible = state is RecipeUiState.Error
@@ -62,6 +64,20 @@ class RecipeFragment : BaseFragment<FragmentRecipeBinding>(
             if (state is RecipeUiState.Success) {
                 setAdapter(state.items)
             }
+        }
+    }
+
+    private fun FragmentRecipeBinding.searchListeners() {
+        with(this) {
+            svSearchRecipe.setOnQueryTextListener(
+                object : SearchView.OnQueryTextListener, OnQueryTextListener {
+                    override fun onQueryTextSubmit(query: String?) = true
+
+                    override fun onQueryTextChange(newText: String?): Boolean {
+                        viewModel.search(newText)
+                        return true
+                    }
+                })
         }
     }
 }
