@@ -48,6 +48,8 @@ dependencies {
     // Navigation
     implementation("androidx.navigation:navigation-fragment:2.7.4")
 
+    // Koin
+    implementation("io.insert-koin:koin-android:3.4.2")
 
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
