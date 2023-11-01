@@ -36,8 +36,7 @@
         tools:layout="@layout/fragment_location">
         <argument
             android:name="location"
-            android:defaultValue="@null"
-            app:argType="string"
+            app:argType="com.clarkelamothe.recetapp.recipe.domain.model.Location"
             app:nullable="true" />
     </fragment>
 </navigation>

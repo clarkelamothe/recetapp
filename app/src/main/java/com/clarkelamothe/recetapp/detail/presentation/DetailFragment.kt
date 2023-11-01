@@ -29,7 +29,13 @@ class DetailFragment : BaseFragment<FragmentDetailBinding>(
 
                 tvRecipeName.text = it.name
                 tvRecipeDescription.text = it.description
+
+                setAdapter(it.items)
             }
         }
+    }
+
+    private fun setAdapter(items: List<String>) {
+        binding?.rvIngredients?.adapter = IngredientAdapter(items)
     }
 }
