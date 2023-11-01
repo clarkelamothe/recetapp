@@ -67,6 +67,8 @@ class RecipeFragment : BaseFragment<FragmentRecipeBinding>(
             incError.tvErrorMsg.isVisible = state is RecipeUiState.Error
             incError.ibError.isVisible = state is RecipeUiState.Error
 
+            incError.tvErrorMsgCustom.text = if (state is RecipeUiState.Error) state.msg else ""
+
             if (state is RecipeUiState.Success) {
                 setAdapter(state.items)
             }

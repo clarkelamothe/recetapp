@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">RecetApp</string>
     <string name="recipe_thumbnail_description">An image for recipe</string>
-    <string name="tap_to_retry">Tap to retry.</string>
+    <string name="tap_to_retry">Tap icon to retry.</string>
     <string name="error_image_description">An icon for error.</string>
     <string name="an_image_for_recipe_detail">An image for recipe detail.</string>
     <string name="ingredients">Ingredients</string>
