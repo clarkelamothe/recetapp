@@ -21,7 +21,7 @@ class RecipeFragment : BaseFragment<FragmentRecipeBinding>(
     private val viewModel: RecipeViewModel by viewModel()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        binding?.searchListeners()
+        binding?.setListeners()
         binding?.rvRecipes?.addItemDecoration(MarginItemDecorator())
         collectState()
         collectEvent()
@@ -46,6 +46,7 @@ class RecipeFragment : BaseFragment<FragmentRecipeBinding>(
                     }
 
                     is RecipeUiEvent.OnSearchQuery -> setAdapter(it.searchResult)
+                    RecipeUiEvent.OnRetryWhenError -> viewModel.getData()
                 }
             }
         }
@@ -75,7 +76,7 @@ class RecipeFragment : BaseFragment<FragmentRecipeBinding>(
         }
     }
 
-    private fun FragmentRecipeBinding.searchListeners() {
+    private fun FragmentRecipeBinding.setListeners() {
         with(this) {
             svSearchRecipe.setOnQueryTextListener(
                 object : SearchView.OnQueryTextListener, OnQueryTextListener {
@@ -86,6 +87,10 @@ class RecipeFragment : BaseFragment<FragmentRecipeBinding>(
                         return true
                     }
                 })
+
+            incError.ibError.setOnClickListener {
+                viewModel.retryOnErrorClicked()
+            }
         }
     }
 }

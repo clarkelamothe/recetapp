@@ -19,6 +19,11 @@ class RecipeViewModel(
     val uiState: StateFlow<RecipeUiState> = _uiState
 
     init {
+        getData()
+    }
+
+    fun getData() {
+        _uiState.value = RecipeUiState.Loading
         viewModelScope.launch {
             recipes()
                 .catch { _uiState.value = RecipeUiState.Error("Oops! Something went wrong.") }
@@ -46,5 +51,9 @@ class RecipeViewModel(
         sendEvent(
             RecipeUiEvent.OnSearchQuery(result)
         )
+    }
+
+    fun retryOnErrorClicked() {
+        sendEvent(RecipeUiEvent.OnRetryWhenError)
     }
 }
