@@ -15,7 +15,7 @@ class RecipeRepositoryImp(
             ApiResult.Success(
                 recipes.body()?.data?.map {
                     it.toDomain()
-                }
+                } ?: emptyList()
             )
         } catch (e: Exception) {
             ApiResult.Error(e)

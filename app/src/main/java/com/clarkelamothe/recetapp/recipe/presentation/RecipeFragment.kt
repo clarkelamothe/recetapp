@@ -9,8 +9,8 @@ import androidx.lifecycle.lifecycleScope
 import com.clarkelamothe.recetapp.core.ui.BaseFragment
 import com.clarkelamothe.recetapp.core.ui.MarginItemDecorator
 import com.clarkelamothe.recetapp.databinding.FragmentRecipeBinding
-import com.clarkelamothe.recetapp.recipe.domain.model.Recipe
 import com.clarkelamothe.recetapp.recipe.presentation.model.RecipeUiEvent
+import com.clarkelamothe.recetapp.recipe.presentation.model.RecipeUiModel
 import com.clarkelamothe.recetapp.recipe.presentation.model.RecipeUiState
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -51,7 +51,7 @@ class RecipeFragment : BaseFragment<FragmentRecipeBinding>(
         }
     }
 
-    private fun setAdapter(items: List<Recipe>) {
+    private fun setAdapter(items: List<RecipeUiModel>) {
         binding?.let {
             it.rvRecipes.adapter = RecipeAdapter(items) {
                 viewModel.onRecipeClicked(it)

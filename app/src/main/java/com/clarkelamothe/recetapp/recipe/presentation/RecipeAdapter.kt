@@ -6,11 +6,11 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.bumptech.glide.Glide
 import com.clarkelamothe.recetapp.databinding.RecipeItemBinding
-import com.clarkelamothe.recetapp.recipe.domain.model.Recipe
+import com.clarkelamothe.recetapp.recipe.presentation.model.RecipeUiModel
 
 class RecipeAdapter(
-    private val recipes: List<Recipe>,
-    private val onItemClick: (Recipe) -> Unit
+    private val recipes: List<RecipeUiModel>,
+    private val onItemClick: (RecipeUiModel) -> Unit
 ) : RecyclerView.Adapter<RecipeAdapter.RecipeViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecipeViewHolder {
         val view = LayoutInflater.from(parent.context)
@@ -38,7 +38,7 @@ class RecipeAdapter(
             }
         }
 
-        fun bind(recipe: Recipe) {
+        fun bind(recipe: RecipeUiModel) {
             name.text = recipe.name
 
             Glide.with(image.context)

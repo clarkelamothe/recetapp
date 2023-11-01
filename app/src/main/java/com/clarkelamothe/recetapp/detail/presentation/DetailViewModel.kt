@@ -6,4 +6,3 @@ import com.clarkelamothe.recetapp.detail.presentation.model.DetailUiEvent
 class DetailViewModel : BaseViewModel<DetailUiEvent>() {
     fun fabClicked() = sendEvent(DetailUiEvent.OnFabClicked)
 }
-
