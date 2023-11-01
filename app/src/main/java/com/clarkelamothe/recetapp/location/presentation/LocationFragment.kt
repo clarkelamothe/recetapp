@@ -2,6 +2,7 @@ package com.clarkelamothe.recetapp.location.presentation
 
 import android.os.Bundle
 import android.view.View
+import androidx.navigation.fragment.navArgs
 import com.clarkelamothe.recetapp.R
 import com.clarkelamothe.recetapp.core.ui.BaseFragment
 import com.clarkelamothe.recetapp.databinding.FragmentLocationBinding
@@ -16,6 +17,7 @@ class LocationFragment : BaseFragment<FragmentLocationBinding>(
     FragmentLocationBinding::inflate
 ), OnMapReadyCallback {
     private lateinit var map: GoogleMap
+    private val args: LocationFragmentArgs by navArgs()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         createFragment()
@@ -28,20 +30,29 @@ class LocationFragment : BaseFragment<FragmentLocationBinding>(
 
     override fun onMapReady(googleMap: GoogleMap) {
         map = googleMap
-        addMarker(LatLng(-34.0, 151.0))
+        getLocation()?.let { addMarker(it) }
     }
 
     private fun addMarker(coordinates: LatLng) {
-        val markerOptions = MarkerOptions().position(coordinates).title("Marker in Sydney")
+        val markerOptions = MarkerOptions().position(coordinates)
         map.addMarker(markerOptions)
         animateCameraTo(coordinates)
     }
 
     private fun animateCameraTo(coordinates: LatLng) {
         map.animateCamera(
-            CameraUpdateFactory.newLatLngZoom(coordinates, 12f),
-            4000,
+            CameraUpdateFactory.newLatLngZoom(coordinates, 6f),
+            3000,
             null
         )
+    }
+
+    private fun getLocation() = args.location?.latitude?.let { latitude ->
+        args.location?.longitude?.let { longitude ->
+            LatLng(
+                latitude,
+                longitude
+            )
+        }
     }
 }

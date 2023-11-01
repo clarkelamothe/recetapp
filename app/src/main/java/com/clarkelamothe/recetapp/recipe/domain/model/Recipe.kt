@@ -14,6 +14,6 @@ data class Recipe(
 
 @Parcelize
 data class Location(
-    val longitude: Float = 0f,
-    val latitude: Float = 0f
+    val longitude: Double = 0.0,
+    val latitude: Double = 0.0
 ) : Parcelable
