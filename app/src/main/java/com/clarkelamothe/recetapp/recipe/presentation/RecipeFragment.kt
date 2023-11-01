@@ -6,6 +6,7 @@ import android.widget.SearchView.OnQueryTextListener
 import androidx.appcompat.widget.SearchView
 import androidx.core.view.isVisible
 import androidx.lifecycle.lifecycleScope
+import com.clarkelamothe.recetapp.R
 import com.clarkelamothe.recetapp.core.ui.BaseFragment
 import com.clarkelamothe.recetapp.core.ui.MarginItemDecorator
 import com.clarkelamothe.recetapp.databinding.FragmentRecipeBinding
@@ -53,6 +54,7 @@ class RecipeFragment : BaseFragment<FragmentRecipeBinding>(
     }
 
     private fun setAdapter(items: List<RecipeUiModel>) {
+        emptyResult(items.isEmpty())
         binding?.let {
             it.rvRecipes.adapter = RecipeAdapter(items) {
                 viewModel.onRecipeClicked(it)
@@ -60,9 +62,15 @@ class RecipeFragment : BaseFragment<FragmentRecipeBinding>(
         }
     }
 
+    private fun emptyResult(show: Boolean) {
+        if (show) binding?.incError?.tvErrorMsgCustom?.text =
+            getString(R.string.no_items_to_display)
+        binding?.incError?.tvErrorMsgCustom?.isVisible = show
+    }
+
     private fun FragmentRecipeBinding.bindState(state: RecipeUiState) {
         with(this) {
-            svSearchRecipe.isEnabled =
+            svSearchRecipe.isVisible =
                 !(state is RecipeUiState.Loading || state is RecipeUiState.Error)
             incLoading.pbLoading.isVisible = state is RecipeUiState.Loading
             incError.tvErrorMsg.isVisible = state is RecipeUiState.Error
