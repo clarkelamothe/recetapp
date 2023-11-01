@@ -13,6 +13,9 @@ import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 
+const val ZOOM = 6f
+const val DURATION_MS = 3000
+
 class LocationFragment : BaseFragment<FragmentLocationBinding>(
     FragmentLocationBinding::inflate
 ), OnMapReadyCallback {
@@ -41,8 +44,8 @@ class LocationFragment : BaseFragment<FragmentLocationBinding>(
 
     private fun animateCameraTo(coordinates: LatLng) {
         map.animateCamera(
-            CameraUpdateFactory.newLatLngZoom(coordinates, 6f),
-            3000,
+            CameraUpdateFactory.newLatLngZoom(coordinates, ZOOM),
+            DURATION_MS,
             null
         )
     }
