@@ -5,6 +5,7 @@ import com.clarkelamothe.recetapp.recipe.data.RecipeRepositoryImp
 import com.clarkelamothe.recetapp.recipe.data.remote.RecipeApi
 import com.clarkelamothe.recetapp.recipe.data.remote.RecipeService
 import com.clarkelamothe.recetapp.recipe.domain.RecipeRepository
+import com.clarkelamothe.recetapp.recipe.domain.usecase.FilterOutRecipesUseCase
 import com.clarkelamothe.recetapp.recipe.domain.usecase.GetRecipeUseCase
 import com.clarkelamothe.recetapp.recipe.presentation.RecipeViewModel
 import org.koin.androidx.viewmodel.dsl.viewModelOf
@@ -17,6 +18,7 @@ val appModule = module {
     viewModelOf(::RecipeViewModel)
     viewModelOf(::DetailViewModel)
     factoryOf(::GetRecipeUseCase)
+    factoryOf(::FilterOutRecipesUseCase)
     factory {
         RecipeService(
             get<Retrofit>().create(RecipeApi::class.java)

@@ -3,6 +3,7 @@ package com.clarkelamothe.recetapp.recipe.presentation
 import androidx.lifecycle.viewModelScope
 import com.clarkelamothe.recetapp.core.data.model.ApiResult
 import com.clarkelamothe.recetapp.core.ui.BaseViewModel
+import com.clarkelamothe.recetapp.recipe.domain.usecase.FilterOutRecipesUseCase
 import com.clarkelamothe.recetapp.recipe.domain.usecase.GetRecipeUseCase
 import com.clarkelamothe.recetapp.recipe.presentation.model.RecipeUiEvent
 import com.clarkelamothe.recetapp.recipe.presentation.model.RecipeUiModel
@@ -13,7 +14,8 @@ import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.launch
 
 class RecipeViewModel(
-    val recipes: GetRecipeUseCase
+    val recipes: GetRecipeUseCase,
+    val filterOutRecipesUseCase: FilterOutRecipesUseCase
 ) : BaseViewModel<RecipeUiEvent>() {
     private val _uiState = MutableStateFlow<RecipeUiState>(RecipeUiState.Loading)
     val uiState: StateFlow<RecipeUiState> = _uiState
@@ -45,11 +47,12 @@ class RecipeViewModel(
 
     fun search(query: String?) {
         val list = _uiState.value
-        val result = (list as RecipeUiState.Success).items.filter {
-            it.name.lowercase().contains(query?.lowercase()?.trim() ?: "")
-        }
+        val result = filterOutRecipesUseCase(
+            query,
+            (list as RecipeUiState.Success).items.map { it.toDomain() })
+
         sendEvent(
-            RecipeUiEvent.OnSearchQuery(result)
+            RecipeUiEvent.OnSearchQuery(result.map { it.toUiModel() })
         )
     }
 
