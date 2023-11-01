@@ -7,8 +7,10 @@ import org.koin.dsl.module
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
+const val BASE_URL = "https://run.mocky.io/v3/"
+
 val retrofitModule = module {
-    single(named(Qualifier.BASE_URL)) { "https://run.mocky.io/v3/" }
+    single(named(Qualifier.BASE_URL)) { BASE_URL }
 
     single {
         Retrofit.Builder().baseUrl(get<String>(named(Qualifier.BASE_URL))).client(get())
