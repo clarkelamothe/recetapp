@@ -8,7 +8,8 @@
         android:id="@+id/ib_error"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:background="@color/white"
+        android:background="#00FFFFFF"
+        android:clickable="true"
         android:contentDescription="@string/error_image_description"
         android:scaleType="fitCenter"
         android:src="@drawable/baseline_error_24"
@@ -19,6 +20,16 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
+        android:id="@+id/tv_error_msg_custom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:visibility="visible"
+        app:layout_constraintEnd_toEndOf="@+id/ib_error"
+        app:layout_constraintStart_toStartOf="@+id/ib_error"
+        app:layout_constraintTop_toBottomOf="@+id/ib_error" />
+
+    <TextView
         android:id="@+id/tv_error_msg"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -27,5 +38,5 @@
         android:visibility="visible"
         app:layout_constraintEnd_toEndOf="@+id/ib_error"
         app:layout_constraintStart_toStartOf="@+id/ib_error"
-        app:layout_constraintTop_toBottomOf="@+id/ib_error" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_error_msg_custom" />
 </androidx.constraintlayout.widget.ConstraintLayout>
