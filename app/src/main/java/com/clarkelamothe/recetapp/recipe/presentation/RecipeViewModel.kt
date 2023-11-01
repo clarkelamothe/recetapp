@@ -4,8 +4,11 @@ import androidx.lifecycle.viewModelScope
 import com.clarkelamothe.recetapp.core.ui.BaseViewModel
 import com.clarkelamothe.recetapp.recipe.domain.model.Recipe
 import com.clarkelamothe.recetapp.recipe.domain.usecase.GetRecipeUseCase
+import com.clarkelamothe.recetapp.recipe.presentation.model.RecipeUiEvent
+import com.clarkelamothe.recetapp.recipe.presentation.model.RecipeUiState
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.launch
 
 class RecipeViewModel(
@@ -16,9 +19,11 @@ class RecipeViewModel(
 
     init {
         viewModelScope.launch {
-            recipes().collect {
-                _uiState.value = RecipeUiState.Success(it)
-            }
+            recipes()
+                .catch { _uiState.value = RecipeUiState.Error("Oops! Something went wrong.") }
+                .collect {
+                    _uiState.value = RecipeUiState.Success(it)
+                }
         }
     }
 
@@ -27,21 +32,10 @@ class RecipeViewModel(
     fun search(query: String?) {
         val list = _uiState.value
         val result = (list as RecipeUiState.Success).items.filter {
-            it.name.lowercase().contains(query?.lowercase() ?: "")
+            it.name.lowercase().contains(query?.lowercase()?.trim() ?: "")
         }
         sendEvent(
             RecipeUiEvent.OnSearchQuery(result)
         )
     }
-}
-
-sealed class RecipeUiEvent {
-    data class OnItemClicked(val recipe: Recipe) : RecipeUiEvent()
-    data class OnSearchQuery(val searchResult: List<Recipe>) : RecipeUiEvent()
-}
-
-sealed class RecipeUiState {
-    object Loading : RecipeUiState()
-    data class Success(val items: List<Recipe>) : RecipeUiState()
-    data class Error(val msg: String) : RecipeUiState()
 }
