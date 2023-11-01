@@ -8,7 +8,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 val retrofitModule = module {
-    single(named(Qualifier.BASE_URL)) { "" }
+    single(named(Qualifier.BASE_URL)) { "https://run.mocky.io/v3/" }
 
     single {
         Retrofit.Builder().baseUrl(get<String>(named(Qualifier.BASE_URL))).client(get())

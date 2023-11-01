@@ -1,6 +1,7 @@
 package com.clarkelamothe.recetapp.recipe.presentation
 
 import androidx.lifecycle.viewModelScope
+import com.clarkelamothe.recetapp.core.data.model.ApiResult
 import com.clarkelamothe.recetapp.core.ui.BaseViewModel
 import com.clarkelamothe.recetapp.recipe.domain.model.Recipe
 import com.clarkelamothe.recetapp.recipe.domain.usecase.GetRecipeUseCase
@@ -22,7 +23,13 @@ class RecipeViewModel(
             recipes()
                 .catch { _uiState.value = RecipeUiState.Error("Oops! Something went wrong.") }
                 .collect {
-                    _uiState.value = RecipeUiState.Success(it)
+                    when (it) {
+                        is ApiResult.Error -> _uiState.value =
+                            RecipeUiState.Error(it.exception.message.toString())
+
+                        is ApiResult.Success<*> -> _uiState.value =
+                            RecipeUiState.Success(it.data as List<Recipe>)
+                    }
                 }
         }
     }
