@@ -2,21 +2,47 @@ package com.clarkelamothe.recetapp.detail.presentation
 
 import android.os.Bundle
 import android.view.View
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
 import com.clarkelamothe.recetapp.core.ui.BaseFragment
 import com.clarkelamothe.recetapp.databinding.FragmentDetailBinding
+import com.clarkelamothe.recetapp.detail.presentation.model.DetailUiEvent
+import kotlinx.coroutines.launch
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class DetailFragment : BaseFragment<FragmentDetailBinding>(
     FragmentDetailBinding::inflate
 ) {
     private val args: DetailFragmentArgs by navArgs()
+    private val viewModel: DetailViewModel by viewModel()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         binding?.bindRecipe()
 
+        setListeners()
+
+        collectEvent()
+    }
+
+    private fun setListeners() {
         binding?.fabLocation?.setOnClickListener {
-            navigateTo(DetailFragmentDirections.actionDetailFragmentToLocationFragment(args.recipeDetail?.location))
+            viewModel.fabClicked()
+        }
+    }
+
+    private fun collectEvent() {
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewModel.eventFlow.collect {
+                when (it) {
+                    DetailUiEvent.OnFabClicked -> navigateTo(
+                        DetailFragmentDirections.actionDetailFragmentToLocationFragment(
+                            args.recipeDetail?.location
+                        )
+                    )
+
+                }
+            }
         }
     }
 

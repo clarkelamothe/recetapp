@@ -17,10 +17,6 @@ class LocationFragment : BaseFragment<FragmentLocationBinding>(
 ), OnMapReadyCallback {
     private lateinit var map: GoogleMap
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         createFragment()
     }
