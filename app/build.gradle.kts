@@ -70,6 +70,8 @@ dependencies {
     // Gson
     implementation("com.squareup.retrofit2:converter-gson:2.9.0")
 
+
+    // Test
     // Junit5
     testImplementation("org.junit.jupiter:junit-jupiter-api:5.10.0")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.10.0")
@@ -78,7 +80,17 @@ dependencies {
     // assertK
     testImplementation("com.willowtreeapps.assertk:assertk:0.27.0")
 
+    // turbine
+    testImplementation("app.cash.turbine:turbine:1.0.0")
+
+    // mockK
+    testImplementation("io.mockk:mockk:1.12.5")
+
+    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.7.3")
     testImplementation("junit:junit:4.13.2")
+    androidTestImplementation("io.mockk:mockk-android:1.12.5")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
+    androidTestImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.7.3")
+
 }
