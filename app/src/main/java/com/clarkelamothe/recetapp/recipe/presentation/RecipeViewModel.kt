@@ -25,8 +25,8 @@ class RecipeViewModel(
     }
 
     fun getData() {
-        _uiState.value = RecipeUiState.Loading
         viewModelScope.launch {
+            _uiState.value = RecipeUiState.Loading
             recipes()
                 .catch { _uiState.value = RecipeUiState.Error("Oops! Something went wrong.") }
                 .collect { apiResult ->
