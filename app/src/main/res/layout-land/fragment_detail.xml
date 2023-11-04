@@ -73,7 +73,7 @@
 
         <TextView
             android:id="@+id/tv_recipe_ingredients_header"
-            style="@style/TextAppearance.MaterialComponents.Caption"
+            style="@style/TextAppearance.MaterialComponents.Headline5"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"

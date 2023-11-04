@@ -9,10 +9,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginHorizontal="16dp"
-        android:layout_marginTop="16dp"
-        android:background="#ECECEC">
+        android:layout_height="match_parent">
 
         <ImageView
             android:id="@+id/iv_recipe_detail"
@@ -38,9 +35,9 @@
             style="@style/TextAppearance.MaterialComponents.Headline5"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="50dp"
+            android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
-            android:layout_marginEnd="50dp"
+            android:layout_marginEnd="16dp"
             android:ellipsize="end"
             android:maxLines="4"
             app:layout_constraintEnd_toEndOf="parent"
@@ -54,9 +51,9 @@
             style="@style/TextAppearance.MaterialComponents.Body2"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="50dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="50dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
             android:ellipsize="end"
             android:maxLines="4"
             app:layout_constraintEnd_toEndOf="parent"
@@ -67,12 +64,12 @@
 
         <TextView
             android:id="@+id/tv_recipe_ingredients_header"
-            style="@style/TextAppearance.MaterialComponents.Caption"
+            style="@style/TextAppearance.MaterialComponents.Headline5"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="50dp"
+            android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
-            android:layout_marginEnd="50dp"
+            android:layout_marginEnd="16dp"
             android:ellipsize="end"
             android:maxLines="4"
             android:text="@string/ingredients"
