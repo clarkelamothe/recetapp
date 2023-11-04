@@ -2,7 +2,7 @@ package com.clarkelamothe.recetapp.recipe.data
 
 import assertk.assertThat
 import assertk.assertions.isEqualTo
-import com.clarkelamothe.recetapp.recipe.data.remote.RecipeDto
+import com.clarkelamothe.recetapp.recipe.data.dto.RecipeDto
 import com.clarkelamothe.recetapp.recipe.domain.model.Recipe
 import io.mockk.every
 import io.mockk.mockk

@@ -5,7 +5,7 @@ import assertk.assertions.isEqualTo
 import assertk.assertions.isInstanceOf
 import com.clarkelamothe.recetapp.core.data.model.ApiResult
 import com.clarkelamothe.recetapp.core.data.model.RecipeResponse
-import com.clarkelamothe.recetapp.recipe.data.remote.RecipeDto
+import com.clarkelamothe.recetapp.recipe.data.dto.RecipeDto
 import com.clarkelamothe.recetapp.recipe.data.remote.RecipeService
 import com.clarkelamothe.recetapp.recipe.domain.model.Recipe
 import io.mockk.coEvery

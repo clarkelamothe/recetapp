@@ -1,4 +1,4 @@
-package com.clarkelamothe.recetapp.recipe.data.remote
+package com.clarkelamothe.recetapp.recipe.data.dto
 
 data class RecipeDto(
     val imageUrl: String,

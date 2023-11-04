@@ -1,6 +1,7 @@
 package com.clarkelamothe.recetapp.recipe.data.remote
 
 import com.clarkelamothe.recetapp.core.data.model.RecipeResponse
+import com.clarkelamothe.recetapp.recipe.data.dto.RecipeDto
 import retrofit2.Response
 import retrofit2.http.GET
 

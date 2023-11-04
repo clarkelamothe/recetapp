@@ -1,6 +1,6 @@
 package com.clarkelamothe.recetapp.recipe.data
 
-import com.clarkelamothe.recetapp.recipe.data.remote.RecipeDto
+import com.clarkelamothe.recetapp.recipe.data.dto.RecipeDto
 import com.clarkelamothe.recetapp.recipe.domain.model.Location
 import com.clarkelamothe.recetapp.recipe.domain.model.Recipe
 
