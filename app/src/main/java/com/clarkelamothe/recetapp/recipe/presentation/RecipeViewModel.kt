@@ -11,6 +11,7 @@ import com.clarkelamothe.recetapp.recipe.presentation.model.RecipeUiState
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.catch
+import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
 class RecipeViewModel(
@@ -26,13 +27,11 @@ class RecipeViewModel(
 
     fun getData() {
         viewModelScope.launch {
-            _uiState.value = RecipeUiState.Loading
             recipes()
                 .catch { _uiState.value = RecipeUiState.Error("Oops! Something went wrong.") }
                 .collect { apiResult ->
                     when (apiResult) {
-                        is ApiResult.Error -> _uiState.value =
-                            RecipeUiState.Error(apiResult.exception.message.toString())
+                        is ApiResult.Error -> _uiState.update { RecipeUiState.Error(apiResult.exception.message.toString()) }
 
                         is ApiResult.Success -> _uiState.value =
                             RecipeUiState.Success(apiResult.data.map {
@@ -56,7 +55,7 @@ class RecipeViewModel(
         )
     }
 
-    fun retryOnErrorClicked() {
-        sendEvent(RecipeUiEvent.OnRetryWhenError)
-    }
+    fun retryOnErrorClicked() = sendEvent(RecipeUiEvent.OnRetryWhenError)
+
+    fun setLoadingState() = _uiState.update { RecipeUiState.Loading }
 }

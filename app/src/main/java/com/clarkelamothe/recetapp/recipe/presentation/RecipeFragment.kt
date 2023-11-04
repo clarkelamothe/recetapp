@@ -47,7 +47,10 @@ class RecipeFragment : BaseFragment<FragmentRecipeBinding>(
                     }
 
                     is RecipeUiEvent.OnSearchQuery -> setAdapter(it.searchResult)
-                    RecipeUiEvent.OnRetryWhenError -> viewModel.getData()
+                    RecipeUiEvent.OnRetryWhenError -> {
+                        viewModel.setLoadingState()
+                        viewModel.getData()
+                    }
                 }
             }
         }
