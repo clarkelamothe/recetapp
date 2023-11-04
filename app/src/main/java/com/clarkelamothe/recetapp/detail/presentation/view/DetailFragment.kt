@@ -1,4 +1,4 @@
-package com.clarkelamothe.recetapp.detail.presentation
+package com.clarkelamothe.recetapp.detail.presentation.view
 
 import android.os.Bundle
 import android.view.View
@@ -7,7 +7,9 @@ import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
 import com.clarkelamothe.recetapp.core.ui.BaseFragment
 import com.clarkelamothe.recetapp.databinding.FragmentDetailBinding
+import com.clarkelamothe.recetapp.detail.presentation.adapter.IngredientAdapter
 import com.clarkelamothe.recetapp.detail.presentation.model.DetailUiEvent
+import com.clarkelamothe.recetapp.detail.presentation.viewmodel.DetailViewModel
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 

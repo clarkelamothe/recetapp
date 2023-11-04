@@ -52,8 +52,8 @@ class RecipeViewModelTest {
 //    @Test
 //    fun `get recipes success and update state correctly`() = runTest {
 //        val success = flowOf(mockk<ApiResult.Error<List<Recipe>>>())
-//
-//        viewModel.uiState.test {
+//        val state = viewModel.uiState.shareIn(CoroutineScope(Dispatchers.Default), SharingStarted.WhileSubscribed())
+//        state.test {
 //            coEvery { getRecipesUseCase() } returns success
 //            assertThat(awaitItem()).isInstanceOf<RecipeUiState.Loading>()
 //            viewModel.getData()

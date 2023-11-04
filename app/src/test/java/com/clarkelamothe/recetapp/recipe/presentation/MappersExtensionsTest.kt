@@ -4,6 +4,8 @@ import assertk.assertThat
 import assertk.assertions.isEqualTo
 import com.clarkelamothe.recetapp.recipe.domain.model.Recipe
 import com.clarkelamothe.recetapp.recipe.presentation.model.RecipeUiModel
+import com.clarkelamothe.recetapp.recipe.presentation.utils.toDomain
+import com.clarkelamothe.recetapp.recipe.presentation.utils.toUiModel
 import io.mockk.every
 import io.mockk.mockk
 import org.junit.jupiter.api.Test

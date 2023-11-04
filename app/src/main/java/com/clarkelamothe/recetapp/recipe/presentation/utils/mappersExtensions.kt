@@ -1,4 +1,4 @@
-package com.clarkelamothe.recetapp.recipe.presentation
+package com.clarkelamothe.recetapp.recipe.presentation.utils
 
 import com.clarkelamothe.recetapp.recipe.domain.model.Location
 import com.clarkelamothe.recetapp.recipe.domain.model.Recipe

@@ -8,8 +8,8 @@ import com.clarkelamothe.recetapp.recipe.domain.usecase.GetRecipeUseCase
 import com.clarkelamothe.recetapp.recipe.presentation.model.RecipeUiEvent
 import com.clarkelamothe.recetapp.recipe.presentation.model.RecipeUiModel
 import com.clarkelamothe.recetapp.recipe.presentation.model.RecipeUiState
-import com.clarkelamothe.recetapp.recipe.presentation.toDomain
-import com.clarkelamothe.recetapp.recipe.presentation.toUiModel
+import com.clarkelamothe.recetapp.recipe.presentation.utils.toDomain
+import com.clarkelamothe.recetapp.recipe.presentation.utils.toUiModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.catch
