@@ -1,4 +1,4 @@
-package com.clarkelamothe.recetapp.recipe.presentation
+package com.clarkelamothe.recetapp.recipe.presentation.view
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

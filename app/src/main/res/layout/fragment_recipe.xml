@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:layout_marginHorizontal="16dp"
     android:background="#ECECEC"
-    tools:context=".recipe.presentation.RecipeFragment">
+    tools:context=".recipe.presentation.view.RecipeFragment">
 
     <androidx.appcompat.widget.SearchView
         android:id="@+id/sv_search_recipe"

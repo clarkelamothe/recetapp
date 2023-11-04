@@ -1,4 +1,4 @@
-package com.clarkelamothe.recetapp.recipe.presentation
+package com.clarkelamothe.recetapp.recipe.presentation.view
 
 import android.os.Bundle
 import android.view.View
@@ -13,6 +13,7 @@ import com.clarkelamothe.recetapp.databinding.FragmentRecipeBinding
 import com.clarkelamothe.recetapp.recipe.presentation.model.RecipeUiEvent
 import com.clarkelamothe.recetapp.recipe.presentation.model.RecipeUiModel
 import com.clarkelamothe.recetapp.recipe.presentation.model.RecipeUiState
+import com.clarkelamothe.recetapp.recipe.presentation.viewmodel.RecipeViewModel
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 

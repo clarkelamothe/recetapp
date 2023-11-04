@@ -1,8 +1,9 @@
-package com.clarkelamothe.recetapp
+package com.clarkelamothe.recetapp.core.ui
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
+import com.clarkelamothe.recetapp.R
 import com.clarkelamothe.recetapp.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {

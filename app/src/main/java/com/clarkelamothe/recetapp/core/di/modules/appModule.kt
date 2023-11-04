@@ -7,7 +7,7 @@ import com.clarkelamothe.recetapp.recipe.data.remote.RecipeService
 import com.clarkelamothe.recetapp.recipe.domain.RecipeRepository
 import com.clarkelamothe.recetapp.recipe.domain.usecase.FilterOutRecipesUseCase
 import com.clarkelamothe.recetapp.recipe.domain.usecase.GetRecipeUseCase
-import com.clarkelamothe.recetapp.recipe.presentation.RecipeViewModel
+import com.clarkelamothe.recetapp.recipe.presentation.viewmodel.RecipeViewModel
 import org.koin.androidx.viewmodel.dsl.viewModelOf
 import org.koin.core.module.dsl.bind
 import org.koin.core.module.dsl.factoryOf

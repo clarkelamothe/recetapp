@@ -9,6 +9,7 @@ import com.clarkelamothe.recetapp.recipe.domain.usecase.GetRecipeUseCase
 import com.clarkelamothe.recetapp.recipe.presentation.model.RecipeUiEvent
 import com.clarkelamothe.recetapp.recipe.presentation.model.RecipeUiModel
 import com.clarkelamothe.recetapp.recipe.presentation.model.RecipeUiState
+import com.clarkelamothe.recetapp.recipe.presentation.viewmodel.RecipeViewModel
 import com.clarkelamothe.recetapp.recipe.util.MainCoroutineExtension
 import io.mockk.mockk
 import kotlinx.coroutines.ExperimentalCoroutinesApi
