@@ -10,9 +10,11 @@ import com.clarkelamothe.recetapp.recipe.presentation.model.RecipeUiModel
 import com.clarkelamothe.recetapp.recipe.presentation.model.RecipeUiState
 import com.clarkelamothe.recetapp.recipe.presentation.utils.toDomain
 import com.clarkelamothe.recetapp.recipe.presentation.utils.toUiModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.catch
+import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
@@ -28,9 +30,10 @@ class RecipeViewModel(
     }
 
     fun getData() {
-        viewModelScope.launch {
+        viewModelScope.launch(Dispatchers.Main) {
             recipes()
                 .catch { _uiState.value = RecipeUiState.Error("Oops! Something went wrong.") }
+                .flowOn(Dispatchers.IO)
                 .collect { apiResult ->
                     when (apiResult) {
                         is ApiResult.Error -> _uiState.update { RecipeUiState.Error(apiResult.exception.message.toString()) }

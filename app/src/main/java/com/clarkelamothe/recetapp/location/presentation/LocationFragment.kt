@@ -2,6 +2,9 @@ package com.clarkelamothe.recetapp.location.presentation
 
 import android.os.Bundle
 import android.view.View
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.navArgs
 import com.clarkelamothe.recetapp.R
 import com.clarkelamothe.recetapp.core.ui.BaseFragment
@@ -12,6 +15,7 @@ import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
+import kotlinx.coroutines.launch
 
 const val ZOOM = 6f
 const val DURATION_MS = 3000
@@ -27,8 +31,13 @@ class LocationFragment : BaseFragment<FragmentLocationBinding>(
     }
 
     private fun createFragment() {
-        val mapFragment = childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment?
-        mapFragment?.getMapAsync(this)
+        lifecycleScope.launch {
+            lifecycle.repeatOnLifecycle(Lifecycle.State.CREATED) {
+                val mapFragment =
+                    childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment?
+                mapFragment?.getMapAsync(this@LocationFragment)
+            }
+        }
     }
 
     override fun onMapReady(googleMap: GoogleMap) {
